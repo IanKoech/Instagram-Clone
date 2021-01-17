@@ -15,7 +15,9 @@ class Profile(models.Model):
         self.save()
 
     @classmethod
-    def update_profile(self):
+    def update_profile(self, bio):
+        self.bio = bio if bio else self.bio
+        self.save()
 
     @classmethod
     def delete(self):
@@ -41,8 +43,8 @@ class Image(models.Model):
         self.delete()
 
     @classmethod
-    def update_caption(self, newCaption):
-        self.caption = this.newCaption
+    def update_caption(self, caption):
+        self.caption = caption if caption else self.caption
         self.save()
 
 
