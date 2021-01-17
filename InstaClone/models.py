@@ -21,6 +21,20 @@ class Image(models.Model):
     likes = models.IntegerField()
     image_url = models.ImageField(upload_to = 'images/')
 
+    @classmethod
+    def save_image(self):
+        self.save()
+
+    @classmethod
+    def delete_image(self):
+        self.delete()
+
+    @classmethod
+    def update_caption(self, newCaption):
+        self.caption = this.newCaption
+        self.save()
+
+
 
 
 
