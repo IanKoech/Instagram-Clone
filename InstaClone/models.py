@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -9,6 +10,11 @@ class Profile(models.Model):
     profile_photo = models.ImageField(upload_to = 'photos/')
     bio = models.TextField(max_length = 100)
     name = models.CharField(max_length = 30)
+    user = models.ForeignKey(User, on_delete = models.CASCADE )
+    followers = models.PositiveIntegerField(default=0)
+    following  = models.PositiveIntegerField(default = 0)
+    followers = models.ManyToManyField('self', related_name='is_following',blank=True)
+    following = models.ManyToManyField('self', related_name='following',blank=True)
 
     @classmethod
     def save_profile(self):
@@ -29,7 +35,7 @@ class Image(models.Model):
     '''
     name = models.CharField(max_length = 30)
     caption = models.CharField(max_length = 30)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(User, on_delete=models.CASCADE)
     comments = models.TextField(max_length = 100)
     likes = models.IntegerField()
     image_url = models.ImageField(upload_to = 'images/')
