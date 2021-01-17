@@ -10,6 +10,17 @@ class Profile(models.Model):
     bio = models.TextField(max_length = 100)
     name = models.CharField(max_length = 30)
 
+    @classmethod
+    def save_profile(self):
+        self.save()
+
+    @classmethod
+    def update_profile(self):
+
+    @classmethod
+    def delete(self):
+        self.delete()
+
 class Image(models.Model):
     '''
     Class creates columns in the image table
