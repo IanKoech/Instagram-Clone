@@ -4,8 +4,6 @@ from .models import Image, Comments, Profile, Followers
 import datetime as dt
 
 #Creating views
-def home(request):
-    rendern render(request, 'home.html')
 
 def profile(request, id):
     try:
