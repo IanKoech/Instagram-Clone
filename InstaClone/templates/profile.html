@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{%block content%}
+{%block styles%}
+{{block.super}}
+    <link rel="stylesheet" href="../static/profile.css">
+{%endblock%}
+
+<div class="row">
+
+    <div class="col-sm-5 col-md-5 col-lg-5 profile_pic">
+
+        <img src="{{user.profile_photo.url}}" alt="image">
+        <h2 class="username">{{user.user}}</h2>
+    </div>
+
+    <div class="col-sm-5 col-md-5 col-lg-5 card bio">
+        <div>
+
+            <h5>{{user.name}}</h5>
+            <p>{{user.bio}}</p>
+        </div>
+        <div class="buttons">
+            <div class="btn-success btn button">21 followers</div>
+
+            <a href="{% url 'addphotos'%}">
+                <div class="btn-info btn">
+                    Post 
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{%endblock%}
