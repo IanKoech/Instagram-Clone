@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 import datetime as dt
 
 # Create your models here.
-
-
-#classes
-
 class Profile(models.Model):
     name = models.CharField(max_length = 60)
     bio = models.TextField(max_length =130)
