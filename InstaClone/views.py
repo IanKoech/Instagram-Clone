@@ -26,3 +26,18 @@ def photos(request):
     comments = Comments.objects.all()
 
     return render(request, 'photos.html',{"photos":photos, "profiles":profiles, "comments":comments})
+
+def image(request):
+    image = Image.objects.all()
+    return render(request, 'image.html',{"photo":image})
+
+def search(request):
+    if 'username' in request.GET and request.GET['username']:
+        search_term = request.GET.get('username')
+        search_photos = Image.search(search_term)
+        return render(request, 'search.html',{"results":search_photos})
+
+    else:
+        message  = 'The term you entered could not be found'
+
+        return render(request, 'search.html',{"message":message})
