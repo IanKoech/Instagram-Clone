@@ -19,3 +19,10 @@ def profile(request, id):
         return redirect('profileupdate')
     else:
         return render(request, 'profile.html',{"user":user})
+
+def photos(request):
+    photos = Image.objects.all()
+    profiles = Profile.objects.all()
+    comments = Comments.objects.all()
+
+    return render(request, 'photos.html',{"photos":photos, "profiles":profiles, "comments":comments})
