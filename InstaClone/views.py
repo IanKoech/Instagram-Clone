@@ -1,9 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from cloudinary.models import CloudinaryField
-from django.core.exceptions import ObjectDoesNotExist
-
-# import datetime as dt
 
 
 class Profile(models.Model):
@@ -14,26 +11,12 @@ class Profile(models.Model):
     posts = models.PositiveIntegerField(null=True, blank=True)
     followers = models.PositiveIntegerField(default=0)
     following = models.PositiveIntegerField(default=0)
-    followers = models.ManyToManyField('self', related_name='is_following',blank=True)
-    following = models.ManyToManyField('self', related_name='following',blank=True)
-
-    def __str__(self):
-        return self.name
 
     def saveProfile(self):
         return self.save()
 
     def deleteProfile(self):
         return self.delete()
-
-    @classmethod
-    def getProfileById(cls, pk):
-        try:
-            prlObject = cls.objects.get(id=pk)
-            return prlObject
-        except ObjectDoesNotExist:
-            message = "Profile does not exist"
-            return message
 
     @classmethod
     def updateProfile(cls, pk, data):

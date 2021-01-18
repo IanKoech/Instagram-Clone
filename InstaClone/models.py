@@ -1,60 +1,83 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime as dt
 
 # Create your models here.
 
-class Profile(models.Model):
-    '''
-    Class created columns in the Profile table
-    Uses foreign key to link to Image class'''
-    profile_photo = models.ImageField(upload_to = 'photos/')
-    bio = models.TextField(max_length = 100)
-    name = models.CharField(max_length = 30)
-    user = models.ForeignKey(User, on_delete = models.CASCADE )
-    followers = models.PositiveIntegerField(default=0)
-    following  = models.PositiveIntegerField(default = 0)
-    followers = models.ManyToManyField('self', related_name='is_following',blank=True)
-    following = models.ManyToManyField('self', related_name='following',blank=True)
 
-    @classmethod
-    def save_profile(self):
+#classes
+
+class Profile(models.Model):
+    name = models.CharField(max_length = 60)
+    bio = models.TextField(max_length =130)
+    profile_photo = models.ImageField(upload_to = 'images/')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+    def saveprofile(self):
         self.save()
 
-    @classmethod
-    def update_profile(self, bio):
+    def deleteprofile(self):
+        self.delete()
+
+    def updateprofile(self, bio):
         self.bio = bio if bio else self.bio
         self.save()
 
-    @classmethod
-    def delete(self):
-        self.delete()
-
-class Image(models.Model):
-    '''
-    Class creates columns in the image table
-    '''
-    name = models.CharField(max_length = 30)
-    caption = models.CharField(max_length = 30)
-    profile = models.ForeignKey(User, on_delete=models.CASCADE)
-    comments = models.TextField(max_length = 100)
-    likes = models.IntegerField()
-    image_url = models.ImageField(upload_to = 'images/')
-
-    @classmethod
-    def save_image(self):
-        self.save()
-
-    @classmethod
-    def delete_image(self):
-        self.delete()
-
-    @classmethod
-    def update_caption(self, caption):
-        self.caption = caption if caption else self.caption
-        self.save()
-
-
-
-
-
     
+class Image(models.Model):
+
+    photo_url = models.ImageField(upload_to= 'images/')
+    name = models.CharField(max_length =100)
+    user = models.ForeignKey(User, on_delete = models.CASCADE,)
+    likes = models.IntegerField()
+    captions = models.TextField(max_length =160)  
+      
+    def __str__(self):
+        return self.name
+
+    def savephoto(self):
+        self.save()
+
+    def deletephoto(self):
+        self.delete()
+
+    def updatephoto(self, photo):
+        self.photo_url = photo if photo else self.photo_url
+        self.save()
+
+    def likephoto(self):
+        self.likes = likes + 1
+        self.save()
+
+    @classmethod
+    def search(cls, searched_term):
+        user = User.objects.filter(username=searched_term)
+        photos = Photo.objects.filter(user=user)
+        return photos
+
+class Comments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField(max_length = 500)
+    photo = models.ForeignKey(Image, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment
+
+    def savecomments(self):
+        self.save()
+
+    def deletecomments(self):
+        self.delete()
+
+    def updatecomments(self, comment):
+        self.comment = comment if comment else self.comment
+        self.save()
+
+class Followers(models.Model):
+    user = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.user
