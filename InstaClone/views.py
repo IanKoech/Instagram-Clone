@@ -41,3 +41,20 @@ def search(request):
         message  = 'The term you entered could not be found'
 
         return render(request, 'search.html',{"message":message})
+
+def addImages(self):
+    current_user =  request.user
+    if request.method == 'POST':
+        form = NewImageForm(request.POST, request.FILES)
+        if form.is_valid():
+             image = form.save(commit = False)
+             image.user = current_user
+             image.likes = 0
+             image.comments = 1
+
+             image.save()
+        return render(request, 'uploadImage.html',{"form":form, "image":image})
+    
+    else:
+        form = NewImageForm()
+        return render(request, 'uploadImage.html',{"form":form})
