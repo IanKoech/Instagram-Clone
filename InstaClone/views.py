@@ -58,3 +58,41 @@ def addImages(self):
     else:
         form = NewImageForm()
         return render(request, 'uploadImage.html',{"form":form})
+
+def updateProfile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UpdateProfile(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit  = False)
+            profile.user = current_user
+            profile.save()
+        
+        return redirect('profile')
+    else:
+        form = UpdateProfile()
+        return render(request, 'updateProfile.html',{"form":form})
+
+def new_comment(request, id):
+    current_user = request.user
+    image = Image.objects.get(id = id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.user = current_user
+            comment.photo = photo
+
+            comment.save()
+        return redirect('photos')
+    
+    else:
+        form = CommentForm()
+        return render(request, 'comment.html',{"form":form, "photo":photo})
+
+def like(request, id):
+    image = Image.objects.get(id = id)
+    image.likes = image.likes + 1
+    image.save()
+
+    return redirect('photos')
