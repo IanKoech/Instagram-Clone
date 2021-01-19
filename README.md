@@ -7,10 +7,15 @@ The author of this project is Ian Koech and can be reached at iankoech9@gmail.co
 ### Set up and Installations
 
 `git clone`
+
 `cd` into the new directory
+
 Set-up a virtual env
+
 Using `pip install -r requirements.txt` , install all project dependencies inside the virtual env
+
 Configure the database to class models
+
 `python3.8 manage.py runserver` to run the application
 
 ### Technologies Used
