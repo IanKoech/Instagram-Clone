@@ -1,0 +1,29 @@
+img{
+    width: auto;
+}
+
+
+
+.username{
+    text-align: left;
+    
+}
+
+.post{
+    width: 50%;
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.button{
+    align-items: center;
+    width: 30%;
+}
+
+.comments{
+    margin-top: 5%;
+}
+
+.comment{
+    padding: 4%;
+}

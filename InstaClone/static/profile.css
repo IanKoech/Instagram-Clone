@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+}
+img{
+    width: auto;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.profile_pic{
+    height: 80vh;
+    padding: 4%;
+    text-align: center;
+}
+
+.bio{
+    padding: 3%;
+    height: 50vh;
+    margin: 2%;
+    margin-left: 6%;
+    margin-top: 6%;
+}
+.username{
+    margin-top: 4%;
+    
+}
+
+.button{
+    align-items: center;
+    width: 30%;
+}
+
+.buttons{
+    position: relative;
+    top: 20%;
+}
+
+a{
+    color: white;
+}
+
+.profileform{
+    margin-top: 3%;
+    padding: 10%;
+    border-radius: 24px;
+}

@@ -2,14 +2,18 @@
 {%load bootstrap3%}
 {%load staticfiles%}
 
-{%block content%}
+
 
 {% block styles %}
+    <link rel="stylesheet" href="../static/bootstrap.css">
+    <link rel="stylesheet" href="../static/comment.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     {% bootstrap_css %}
 {% endblock %}
 
-    
-    <form class="btn-info container commentform" action="{% url 'comment' photo.id%}" method="POST" enctype="multipart/form-data">
+{% block content }  
+    <form class="btn-info container commentform" action="{% url 'comment'{{photo.id}} %}" method="POST" enctype="multipart/form-data" style="font-family: 'Montserrat'; text-align: center;">
         {%csrf_token%}
         {%bootstrap_form form%}
         <input type="submit" value="Comment">

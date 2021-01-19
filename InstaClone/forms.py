@@ -1,15 +1,15 @@
+from .models import Photo, Profile, Comments
 from django import forms
-from .models import Image, Comments, Profile
 
-class NewImageForm(forms.ModelForm):
+class NewPhotoForm(forms.ModelForm):
     class Meta:
-        model = Image
-        exclude = ['user', 'likes', 'captions']
+        model = Photo
+        exclude = ['user','comments', 'likes','date']
 
 class UpdateProfile(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude =  ['user']
+        exclude = ['user']
 
 class Comment(forms.ModelForm):
     class Meta:

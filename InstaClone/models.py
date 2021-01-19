@@ -1,16 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime as dt
+
 
 # Create your models here.
+
+
+#classes
+
 class Profile(models.Model):
     name = models.CharField(max_length = 60)
     bio = models.TextField(max_length =130)
-    profile_photo = models.ImageField(upload_to = 'images/')
+    profile_photo = models.ImageField(upload_to = 'profile/')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 
     def saveprofile(self):
         self.save()
@@ -23,16 +24,15 @@ class Profile(models.Model):
         self.save()
 
     
-class Image(models.Model):
+class Photo(models.Model):
 
-    photo_url = models.ImageField(upload_to= 'images/')
+    photo_url = models.ImageField(upload_to= 'photos/')
     name = models.CharField(max_length =100)
     user = models.ForeignKey(User, on_delete = models.CASCADE,)
     likes = models.IntegerField()
     captions = models.TextField(max_length =160)  
       
-    def __str__(self):
-        return self.name
+
 
     def savephoto(self):
         self.save()
@@ -57,10 +57,7 @@ class Image(models.Model):
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField(max_length = 500)
-    photo = models.ForeignKey(Image, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.comment
+    photo = models.ForeignKey(Photo, on_delete=models.CASCADE)
 
     def savecomments(self):
         self.save()
@@ -72,8 +69,9 @@ class Comments(models.Model):
         self.comment = comment if comment else self.comment
         self.save()
 
-class Followers(models.Model):
-    user = models.CharField(max_length=30)
+class Follow(models.Model):
+    following = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    followers = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
 
     def __str__(self):
-        return self.user
+        return self.following

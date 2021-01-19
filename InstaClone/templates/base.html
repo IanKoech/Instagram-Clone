@@ -1,35 +1,50 @@
 {% load bootstrap3 %}
-<!DOCTYPE html>
+{% load static %}
 <html>
+
 <head>
-  <meta charset="utf-8">
-
-  {% if title %}
-  <title>Moringa Tribune - {{title}}</title>
-  {% else %}
-    <title class='jumbotron'> Instagram </title>
-  {% endif %}
-
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144351462-1"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Instagram</title>
   {% block styles %}
-    {% bootstrap_css %}
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Vibes&display=swap" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/" type="text/css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
   {% endblock %}
-
+  <link rel="icon" href="https://play-lh.googleusercontent.com/h9jWMwqb-h9hjP4THqrJ50eIwPekjv7QPmTpA85gFQ10PjV02CoGAcYLLptqd19Sa1iJ" width="30" height="30" class="d-inline-block align-top">
+  <p class='jumbotron' style="font-family: 'Montserrat';font-size: large; text-align: center; display: block;"><img src='data:image/png;base64,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' height="65px" width="auto"><span>   ..</span>Instagram</p>
 </head>
+
 <body>
-    {% block nav%}
-      {% include "navbar.html" %}
+  <div>
+    {% block title %}
     {% endblock %}
 
-    {% block content %} 
-        <h1 class='text-center'></h1>
-    {%endblock%}
+    {% block nav%}
+    {% include "navbar.html" %}
+    {% endblock%}
+    
+
+
+    {% block content %}
+    {% endblock %}
 
     {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     {% bootstrap_javascript %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'script.js'%}"></script>
     {% endblock %}
+  </div>
 </body>
+
 </html>

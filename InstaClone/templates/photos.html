@@ -1,0 +1,59 @@
+{%extends 'base.html'%}
+
+{% block content%}
+
+{%block styles%}
+{{block.super}}
+<link rel="stylesheet" href="../static/home.css">
+
+{%endblock%}
+
+{% for photo in photos %}
+<div class="row">
+    <div class="post card col-md-8">
+
+        <h4 class="username card-header">{{photo.user}}</h4>
+
+        <img src="{{photo.photo_url.url}}" alt="image">
+        <div class="card-footer">
+            <p>{{photo.name}}</p>
+            <p>{{photo.captions}}</p>
+
+
+            <div>
+                <a href="" class="btn-success btn button">
+                    {{photo.likes}} likes
+                </a>
+                <a href="/like/{{photo.id}}" class="btn-primary btn button">
+                    Like
+                </a>
+                <a href="/comment/{{photo.id}}" class="btn-info btn button">
+                    Comment
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 comments">
+        <h3>Comments</h3>
+        <hr>
+        {%for comment in comments%}
+        {%if comment.photo == photo%}
+        <div class="comment card">
+            <h5 class="card-header">{{comment.user}}</h5>
+            <p>{{comment.comment}}</p>
+        </div>
+        {%endif%}
+
+        {%endfor%}
+
+    </div>
+
+
+</div>
+
+{%endfor%}
+
+
+
+{% endblock %}

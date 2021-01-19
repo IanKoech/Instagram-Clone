@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%load bootstrap3%}
+{%load staticfiles%}
+
+{% block content%}
+    
+    {% block styles %}
+    {{block.super}}
+    <link rel="stylesheet" href="../static/post.css">
+
+    {%endblock%}
+
+    <form class="form container btn-info postform" action="{% url 'addphotos' %}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {%bootstrap_form form%}
+        <input type="submit" value="comment">
+    </form>
+{%endblock%}

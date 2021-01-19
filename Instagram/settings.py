@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'bootstrap3',
 
     #Third party modules
-    'django-registration'
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'Instagram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'instagram',
         'USER': 'ian',
         'PASSWORD': 'iankoech'
