@@ -23,7 +23,7 @@ def photos(request):
     profiles = Profile.objects.all()
     comments = Comments.objects.all()
 
-    return render(request, 'photos.html',{"photos":photos, "profiles":profiles, "comments":comments})
+    return render(request, 'profile.html',{"photos":photos, "profiles":profiles, "comments":comments})
 
 def image(request):
     image = Image.objects.all()

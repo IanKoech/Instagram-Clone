@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%load bootstrap3%}
+{%load staticfiles%}
+
+{%block content%}
+
+{% block styles %}
+    {% bootstrap_css %}
+{% endblock %}
+
+    
+    <form class="btn-info container commentform" action="{% url 'comment' photo.id%}" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        {%bootstrap_form form%}
+        <input type="submit" value="Comment">
+    </form>
+
+{%endblock%}

@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'InstaClone',
     'tinymce',
-    'bootstrap3'
+    'bootstrap3',
+
+    #Third party modules
+    'django-registration'
 ]
 
 MIDDLEWARE = [
