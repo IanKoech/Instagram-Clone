@@ -1,0 +1,17 @@
+asgiref==3.3.1
+auditlog3==1.0.1
+certifi==2020.12.5
+cloudinary==1.24.0
+confusable-homoglyphs==3.2.0
+Django==1.8
+django-bootstrap==0.2.4
+django-bootstrap3==14.2.0
+django-registration==2.4.1
+django-tinymce==3.2.0
+django-urls==1.1.3
+Pillow==8.1.0
+psycopg2==2.8.6
+pytz==2020.5
+six==1.15.0
+sqlparse==0.4.1
+urllib3==1.26.2
