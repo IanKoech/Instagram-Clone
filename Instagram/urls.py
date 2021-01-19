@@ -19,5 +19,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('InstaClone.urls')),
+    url('accounts/register/',
+        RegistrationView.as_view(success_url='/profile/'),
+        name='django_registration_register'),
     url(r'^accounts/', include('django_registration.backends.simple.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
