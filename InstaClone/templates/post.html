@@ -10,7 +10,7 @@
 
     {%endblock%}
 
-    <form class="form container btn-info postform" action="{% url 'addphotos' %}" method="post" enctype="multipart/form-data">
+    <form class="form container btn-info postform" action="{% url 'addImages' %}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         {%bootstrap_form form%}
         <input type="submit" value="comment">

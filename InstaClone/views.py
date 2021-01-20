@@ -8,10 +8,10 @@ from django.contrib.auth import  login
 # Create your views here.
 
 #user profile
-@login_required(login_url= '/accounts/login/')
-def profile(request, id):
+@login_required(login_url= 'accounts/login/')
+def profile(request):
     try:
-        user = User.objects.get(id = id)
+        user = User.objects.get(id = request.user.id)
         profile = Profile.objects.get(user = user)
     except:
         profile = None
