@@ -79,10 +79,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'InstaClone',
+    'mygallery',
     'bootstrap3',
-    'django_registration',
-    'django_heroku'
 ]
 
 MIDDLEWARE = [
@@ -115,7 +113,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gallery.wsgi.application'
+WSGI_APPLICATION = 'Instagram.wsgi.application'
 
 
 # Database
