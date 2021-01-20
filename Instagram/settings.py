@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import django_heroku
 import dj_database_url
 from decouple import config, Csv
 
@@ -31,7 +31,7 @@ SECRET_KEY = '^%x^m74s7of^8cwy$s*krd+%@4#*rso_(96mh4pnawdw+4)fug'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.localhost', '.herokuapp.com', '.127.0.0.1']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',default="herokuapp.com", cast=Csv())
 
 
 # Application definition
@@ -171,5 +171,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGOUT_REDIRECT_URL = 'login'
-LOGIN_URL = '/user/login/'
+LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = '/logout/'
