@@ -21,8 +21,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 # production
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+#db_from_env = dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -61,8 +61,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mygallery',
+    'InstaClone',
     'bootstrap3',
+    'tinymce',
+    'django_registration',
 ]
 
 MIDDLEWARE = [
@@ -101,11 +103,26 @@ WSGI_APPLICATION = 'Instagram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+   #     'NAME': 'instagram',
+    #    'USER': 'ian',
+     #   'PASSWORD':'iankoech',
+    #}
+#}
 DATABASES = {
        'default': dj_database_url.config(
            default=config('DATABASE_URL')
        )
    }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+
 
 
 

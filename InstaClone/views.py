@@ -21,7 +21,7 @@ def profile(request):
     else:
         return render(request, 'profile.html', {"user":profile})
 
-@login_required(login_url= 'login/')
+@login_required(login_url= '/accounts/login/')
 def photos(request):
 
     Photos = Photo.objects.all()
