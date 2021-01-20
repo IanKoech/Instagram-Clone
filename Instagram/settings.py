@@ -79,8 +79,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mygallery',
+    'InstaClone',
     'bootstrap3',
+    'django_registration',
+    'django_heroku'
 ]
 
 MIDDLEWARE = [
