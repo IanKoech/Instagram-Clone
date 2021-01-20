@@ -11,20 +11,17 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-#import django_heroku
-#import dj_database_url
+
+import dj_database_url
 from decouple import config, Csv
 
-MODE=config("MODE", default="dev")
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
 
 # production
 
-#db_from_env = dj_database_url.config(conn_max_age=500)
-#DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -49,7 +46,7 @@ SECRET_KEY = '^%x^m74s7of^8cwy$s*krd+%@4#*rso_(96mh4pnawdw+4)fug'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.localhost', '.herokuapp.com', '.127.0.0.1']
 
 
 # Application definition
@@ -111,6 +108,10 @@ WSGI_APPLICATION = 'Instagram.wsgi.application'
      #   'PASSWORD':'iankoech',
     #}
 #}
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+
 DATABASES = {
        'default': dj_database_url.config(
            default=config('DATABASE_URL')
