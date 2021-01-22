@@ -27,7 +27,7 @@ urlpatterns = [
     #url('accounts/register/',
      #   RegistrationView.as_view(success_url='/'),
       #  name='django_registration_register'),
-    url('login/', auth_views.LoginView(template_name= 'login.html', name='login')),
+    #url('login/', auth_views.LoginView(template_name= 'login.html', name='login')),
     url('logout/', LogoutView, {"next_page": '/'}),     
     url(r'tinymce', include('tinymce.urls')),
     
